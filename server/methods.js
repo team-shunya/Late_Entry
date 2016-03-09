@@ -1,6 +1,5 @@
 var counter=0;
 var lock;
-
 Meteor.methods({
 	createSession: function(previousId){
 
@@ -21,31 +20,12 @@ Meteor.methods({
 			var test= Tests.findOne({status:'running'});
 
 			var templates= Templates.find({testId: test._id}).fetch();
-			//logic
-/*			function selectionSort(A)
-			{
-				var n=A.length;
-				for(var i=0;i<n;i++)
-				{
-					var max_i=i;
-					for(var j=i+1;j<n;j++)
-					{
-						if(A[max_i].currentWeight<A[j].currentWeight)
-						{
-							max_i=j;
-						}
-					}
-					var temp=A[max_i];
-					A[max_i]=A[j];
-					A[j]=temp;
-				}
-			}*/
 
 
-			// templates.sort(function(a,b){
-			// 	return a.currentWeight<b.currentWeight;
-			// });
-			selectionSort(templates);
+			//stable kro
+			templates.sort(function(a,b){
+				return a.currentWeight<b.currentWeight;
+			});
 			console.log(templates);
 			console.log("***********************");
 			function resetWeight(){
