@@ -136,11 +136,15 @@ Meteor.methods({
 			startTime: new Date(),
 			endTime: moment().add(testData.duration,'minutes').toDate(),
 			components: testData.components,
-			latest: true,
+<<<<<<< HEAD
+			latest: true
+
+=======
 			scoring:{
 				click:10,
 				hover:1
 			}
+>>>>>>> ab
 		};
 
 		var testId=Tests.insert(test);
