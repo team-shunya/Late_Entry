@@ -75,7 +75,9 @@ Meteor.methods({
 			status: 'running',
 			startTime: new Date(),
 			endTime: moment().add(testData.duration,'minutes').toDate(),
-			components: testData.components
+			components: testData.components,
+			latest: true
+
 		};
 
 		var testId=Tests.insert(test);

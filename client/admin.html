@@ -1,0 +1,45 @@
+<template name="analytics">
+<div class="container">
+	 <div class="row">
+	 	<div class="row">
+	 		<!-- info -->
+	 		
+		{{#each template}}
+			<div class="col-md-4">
+				name: {{name}} <br>
+				weight: {{weight}} <br>
+				success: {{successStatus}} <br>
+			</div>
+		{{/each}}
+		</div>
+
+	 	
+
+
+	 	<div class="col-md-6">
+	 		<!-- scoring graph -->
+				<canvas id="scoringChart" class="chart"></canvas>
+	 	</div>
+
+	 	<div class="col-md-6">
+	 		<!-- traffic distribution chart -->
+	 		<canvas id="distribution" class="chart"></canvas>
+	 	</div>
+
+
+	 </div>
+
+	 </div>
+
+
+
+	 <style>
+
+	.chart{
+		width: 100%;
+		max-height: 100vh;
+		min-height: 50vh;
+	}
+
+	 </style>
+</template>

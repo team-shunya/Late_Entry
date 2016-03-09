@@ -24,3 +24,8 @@ Meteor.startup(function(){
 	}
 });
 
+
+
+Meteor.publish('test',function(){
+	return Tests.find();
+})
