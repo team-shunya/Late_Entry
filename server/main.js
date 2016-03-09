@@ -1,9 +1,11 @@
 Meteor.startup(function(){
 	defaultTemplate='a';
-	TestRunning=false;
+	TestRunning=true;
 	var testing=true;
 	if(testing){
 		Tests.remove({});
+		Templates.remove({});
+		Sessions.remove({});
 
 		var test= {
 			templateData: [{name: 'a', weight: 5,successCriteria: 0.8},
