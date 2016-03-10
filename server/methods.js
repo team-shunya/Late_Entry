@@ -83,7 +83,7 @@ Meteor.methods({
 			// templates.sort(function(a,b){
 			// 	return a.currentWeight<b.currentWeight;
 			// });
-			templates.mergeSort(function(left, right){
+			templates=templates.mergeSort(function(left, right){
 			  return left.currentWeight < right.currentWeight;
 			});
 			console.log(templates);
