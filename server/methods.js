@@ -80,12 +80,12 @@ Meteor.methods({
 
 
 			//stable kro
-			// templates.sort(function(a,b){
-			// 	return a.currentWeight<b.currentWeight;
-			// });
-			templates=templates.mergeSort(function(left, right){
-			  return left.currentWeight < right.currentWeight;
+			templates.sort(function(a,b){
+				return a.currentWeight<b.currentWeight;
 			});
+		/*	templates=templates.mergeSort(function(left, right){
+			  return left.currentWeight < right.currentWeight;
+			});*/
 			console.log(templates);
 			console.log("***********************");
 			function resetWeight(){
@@ -99,9 +99,21 @@ Meteor.methods({
 			while(templates[counter].currentWeight==0){
 				counter=(counter+1)%templateCount;
 				if(templates[0].currentWeight===0){
+					console.log('weight reset');
 					resetWeight();
+					break;
 				}
 			}
+
+			var templates= Templates.find({testId: test._id}).fetch();
+
+
+			//stable kro
+			templates.sort(function(a,b){
+				return a.currentWeight<b.currentWeight;
+			});
+
+
 			var updatedTemplateName=templates[counter].name;
 			Templates.update({_id:templates[counter]._id},{$set:{currentWeight:templates[counter].currentWeight-1},$inc: {currentUsers: 1}});
 			counter=(counter+1)%templateCount;
@@ -140,7 +152,8 @@ Meteor.methods({
 			scoring:{
 				click:10,
 				hover:1
-			}
+			},
+			success: testData.success
 		};
 
 		var testId=Tests.insert(test);

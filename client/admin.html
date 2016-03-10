@@ -6,6 +6,9 @@
 	 		
 		{{#each template}}
 			<div class="col-md-4">
+				{{#if leading}}
+				<span>LEADING</span><br>
+				{{/if}}
 				name: {{name}} <br>
 				weight: {{weight}} <br>
 				success: {{successStatus}} <br>

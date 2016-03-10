@@ -24,3 +24,4 @@ jparker:crypto-md5
 
 iron:router
 momentjs:moment
+percolate:synced-cron

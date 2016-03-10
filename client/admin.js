@@ -16,6 +16,19 @@ Template.analytics.helpers({
 	},
 	successStatus: function(){
 		return this.click>Tests.findOne({latest: true}).success?'true':'false';
+	},
+	leading: function(){
+		var flag=true;
+		var self=this;
+		var templates=Templates.find({testId: getTest()});
+		var score=this.score;
+		templates.forEach(function(t){
+			if(t.score>score)
+				flag=false;
+		});
+
+		if(flag)
+			return true;
 	}
 });
 
