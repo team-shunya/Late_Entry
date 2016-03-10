@@ -33,6 +33,38 @@
 
 	 </div>
 
+	 <div class="row">
+	 	<div class="col-md-6">
+	 	{{#with test}}
+			start time: {{startTime}}
+			<br>
+			end time: {{endTime}}
+			<hr>
+
+			scoring: 
+			<br>
+			click: {{scoring.click}} <br>
+			hover: {{scoring.hover}}
+			<hr>
+
+			components: <br>
+			{{#each components}}
+				{{makeComponent this}}
+			{{/each}}
+
+			<hr>
+
+	 		{{#if winner}}
+				 Best Solution is : {{winner}}
+	 		{{/if}}
+
+	 	{{/with}}
+	 	</div>
+	 	<div class="col-md-6">
+	 		
+	 	</div>
+	 </div>
+
 	 </div>
 
 
@@ -41,8 +73,7 @@
 
 	.chart{
 		width: 100%;
-		max-height: 100vh;
-		min-height: 50vh;
+		max-height: 60vh;
 	}
 
 	 </style>

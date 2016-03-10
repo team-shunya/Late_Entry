@@ -134,6 +134,8 @@ Meteor.methods({
 	},
 	createTest: function(testData){
 
+
+		Tests.update({latest: true},{$set: {latest: false} });
 		/*
 			{
 				templateData: [{name, weight,successCriteria}]

@@ -29,6 +29,19 @@ Template.analytics.helpers({
 
 		if(flag)
 			return true;
+	},
+	test: function(){
+		return Tests.findOne({latest: true});
+	},
+	makeComponent:function(obj)
+	{
+		var lol="";
+		if(obj.type=="class")
+			lol+=".";
+		else
+			lol+="#";
+			lol+=obj.name;
+			return lol;	
 	}
 });
 
@@ -80,15 +93,15 @@ Template.analytics.onRendered(function(){
     ]
 	};
 
-	templates.forEach(function(t){
+	for(var z=0; z<templates.length; z++){
 		var dataset=JSON.parse(JSON.stringify(blueprint[counter]));
-		counter= (counter+1)%3;   
-		dataset.data.push(t.score);
-		dataset.label=t.name;
+		counter= (counter+1)%3; 
+		dataset.data.push(templates[z].score);
+		dataset.label=templates[z].name;
 		data.datasets.push(dataset);
-		scoreSequence.push(t.name);
-		previousScore[t.name]=t.score;
-	});
+		scoreSequence.push(templates[z].name);
+		previousScore[templates[z].name]=templates[z].score;
+	}
 
  //data.datasets=blueprint;
 	myLineChart = new Chart(ctx).Line(data);
@@ -164,10 +177,13 @@ Template.analytics.onRendered(function(){
 				var update=[];
 
 				for (var j=0; j<scoreSequence.length; j++){
-					if(scoreSequence[j]===old.name)
+					if(scoreSequence[j]===old.name){
 						update.push(newDoc.score);
-					else
+						previousScore[scoreSequence[j]]=newDoc.score;
+					}
+					else{
 						update.push(previousScore[scoreSequence[j]]);
+					}
 				}
 				myLineChart.addData(update,counter3);
 				counter3++;

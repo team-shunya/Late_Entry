@@ -1,6 +1,7 @@
 Meteor.startup(function(){
 	defaultTemplate='a';
 	TestRunning=true;
+	AutoWeight=false;
 	var testing=true;
 	if(testing){
 		Tests.remove({});
@@ -12,7 +13,7 @@ Meteor.startup(function(){
 			{name: 'c', weight: 2,successCriteria: 0.8},
 			{name: 'b', weight: 3,successCriteria: 0.8}],
 			components: [{type: 'id', name: 'feat0'},{type: 'id', name: 'feat1'}],
-			duration: 30,
+			duration: 2,
 			success: 0.6
 		};
 		Meteor.call('createTest',test,function(err,result){
@@ -65,6 +66,10 @@ SyncedCron.add({
 						if(ratio>success)
 							Templates.update({_id:t._id},{$set:{success:true}});      			
       		});	
+
+      		if(AutoWeight){
+      			//insert new test with inremented weight for winner.
+      		}
       }
 
   }
