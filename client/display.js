@@ -23,11 +23,14 @@ Template.display.onRendered(function(){
 	console.log(identifiers);
 	identifiers.forEach(function(identifier){
 		$(identifier).on('click',function(e){
-			 if (e.target === this)
-    			return;
+			e.stopPropagation();
+			 /*if (e.target === this)
+    			return;*/
 			Meteor.call('updateClickScore',{testId:test.testId,templateName:Session.get('templateName'),clickScore:test.scoring.click},function(err,result){
 				if(err)
 					console.log(err);
+				else
+					console.log('ok');
 				// else
 				// 	console.log('Yuss!');
 			});

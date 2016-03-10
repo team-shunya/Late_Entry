@@ -13,7 +13,7 @@ Meteor.startup(function(){
 			{name: 'c', weight: 2,successCriteria: 0.8},
 			{name: 'b', weight: 3,successCriteria: 0.8}],
 			components: [{type: 'id', name: 'feat0'},{type: 'id', name: 'feat1'}],
-			duration: 2,
+			duration: 30,//minutes
 			success: 0.6
 		};
 		Meteor.call('createTest',test,function(err,result){
